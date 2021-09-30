@@ -4,7 +4,8 @@ html {
 }
 .card-deck{
   /* margin-top: 500px!important; */
-  margin-left: 50px;
+  /* margin-left: 50px; */
+  justify-content: center;
 }
 .page-inner{
   margin-bottom: 30px;
