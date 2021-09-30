@@ -1,0 +1,11 @@
+body {
+    color: #000;
+    overflow-x: hidden;
+    height: fit-content;
+    background-image: url("/Images/photo-1577908884587-a89c28d6c1af.jfif");
+    /* background-repeat: no-repeat; */
+    -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}

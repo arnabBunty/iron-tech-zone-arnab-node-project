@@ -1,0 +1,26 @@
+<%-include('../Includes/header.ejs') %>
+<link rel="stylesheet" href="/CSS/adminHome.css">
+<title><%=title%></title>
+</head>
+
+<%-include('../Includes/preloader.ejs') %>
+<%-include('../Includes/nav.ejs') %>
+<div class="login">
+<form class="box" action="/signupValue" method="POST">
+    <h1>sign Up</h1>
+<input type="text" name="first_name" placeholder="First Name" required>
+<input type="text" name="last_name" placeholder="Last Name" required>
+<input type="email" name="email" placeholder="Email" required>
+<input type="number" name="phn" placeholder="Phone No." required>
+<input type="password" name="pass" placeholder="Passsword" required>
+<input type="hidden" name="_csrf" value="<%=csrf%>">
+<% if(error.length>0){
+    for(let data of error){ %>
+<span><h6 style="color: red!important;"><%=data.msg%></h6></span>
+    <% } %>
+<% } %>
+<input type="submit" value="Register">
+</form>
+<h6>Have an account? <a href="/signin">Log in now</a></h6>
+</div>
+<%-include('../Includes/footer.ejs') %>

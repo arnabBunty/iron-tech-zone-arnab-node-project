@@ -1,0 +1,84 @@
+.waves-effect{
+  color: rgb(255, 255, 255);
+  transition: color 500ms linear;
+}
+.waves-effect:hover{
+  font-weight: 500;
+  color: orange;
+  transition: color 300ms linear;
+}
+
+.navbar {
+  background-image: linear-gradient(to top, rgba(255,0,0,0), rgb(21, 68, 156));
+  margin-bottom: 10px;
+}
+
+.active{
+  font-weight: 500;
+  color: orange!important;
+  transition: color 300ms linear;
+}
+
+
+.navbar{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  form.example input[type=text] {
+    padding: 10px;
+    font-size: 17px;
+    border: none;
+    border-radius: 25px 0 0 25px;
+    float: left;
+    width: 70%;
+    outline: none;
+    background: #f1f1f1;
+  }
+  /* Style the submit button */
+  form.example button {
+    float: left;
+    width: 20%;
+    padding: 10px;
+    background: #21f33d;
+    color: white;
+    font-size: 17px;
+    border: none;
+    border-radius: 0 25px 25px 0;
+    border-left: none; /* Prevent double borders */
+    cursor: pointer;
+    transition: background 300ms linear;
+  }
+  
+  form.example button:hover {
+    background: #0b7dda;
+    transition: background 300ms linear;
+  }
+  
+  /* Clear floats */
+  form.example::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+  .badge {
+    padding-left: 9px;
+    padding-right: 9px;
+    -webkit-border-radius: 9px;
+    -moz-border-radius: 9px;
+    border-radius: 9px;
+  }
+  
+  .label-warning[href],
+  .badge-warning[href] {
+    background-color: #c67605!important;
+  }
+  #lblCartCount {
+      font-size: 12px;
+      background: #ff0000!important;
+      color: #fff!important;
+      padding: 0 5px;
+      vertical-align: top;
+      margin-left: -10px;
+      border-radius: 50%; 
+  }

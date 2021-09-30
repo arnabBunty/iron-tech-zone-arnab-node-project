@@ -1,0 +1,30 @@
+<%-include('../Includes/header.ejs') %>
+<link rel="stylesheet" href="/CSS/addproduct.css">
+<title><%=title%></title>
+</head>
+
+<%-include('../Includes/preloader.ejs') %>
+<%-include('../Includes/nav.ejs') %>
+<!-- ID,name,description -->
+<div class="container-fluid px-1 py-5 mx-auto">
+    <div class="row d-flex justify-content-center">
+        <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
+            
+            <div class="card">
+                <h1>Add New Product</h1><br>
+                <form class="form-card" method="POST" action="/addproduct" enctype="multipart/form-data">
+                    <input type="text" name="prod_name" placeholder="Product Name" required>
+                    <input type="number" name="prod_price" placeholder="Product Price" required>
+                    <input type="number" name="prod_qty" placeholder="Product Quantity" required>
+                    <input type="file" name="prod_img" multiple>
+                    <input type="text" name="prod_cat" placeholder="Product Category" required>
+                    <textarea name="prod_desc" placeholder="Product Description" required></textarea>
+                    <input type="text" name="_csrf" value="<%=csrf%>">
+                    <input type="submit" value="Add Product">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%-include('../Includes/footer.ejs') %>

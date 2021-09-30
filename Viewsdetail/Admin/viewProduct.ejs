@@ -1,0 +1,62 @@
+<%-include('../Includes/header.ejs') %>
+<title><%=title%></title>
+<link rel="stylesheet" href="/CSS/viewproduct.css">
+</head>
+<%-include('../Includes/preloader.ejs') %>
+    <%-include('../Includes/nav.ejs') %>
+  <div class="container">
+      <form action="/admin/viewproduct" method="GET">
+        <input type="hidden" name="_csrf" value="<%=csrf%>">
+    <button class="btn btn-success" style="border-radius: 25px;" name="sort" value="asc"><a style="font-size: small; font-weight: 500; color: rgb(107, 9, 50);" >Ascending</a></button>
+    <button class="btn btn-success" style="border-radius: 25px;" name="sort" value="desc" ><a style="font-size: small; font-weight: 500; color: rgb(107, 9, 50);" >Descending</a></button>
+</form>
+    <br>
+    <br>
+    <div class="card">
+    <table class="table table-hover shopping-cart-wrap">
+    <thead class="text-muted">
+    <tr>
+      <th scope="col">Product <a style="float: right;"></a></th>
+      <th scope="col" width="120">Price</th>
+      <th scope="col">Quantity</th>
+      <th scope="col" width="250" class="text-right">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+        <% if(products.length>0){
+            for(let data of products){ %>
+    <tr>
+        <td>
+    <figure class="media">
+        <!-- <div class="img-wrap"><img src="https://i.imgur.com/GMmCQHC.png" class="img-thumbnail img-sm"></div> -->
+        <figcaption class="media-body">
+            <h6 class="title text-truncate"><%=data.prod_name%> </h6>
+            <dl class="param param-inline small">
+              <dt>Description: </dt>
+              <dd><%=data.prod_desc%> </dd>
+            </dl>
+        </figcaption>
+    </figure> 
+        </td>
+        <td> 
+            <div class="price-wrap"> 
+                <var class="price">&#8377;<%=data.prod_price%></var> 
+            </div>
+        </td>
+        <td><%=data.prod_qty%></td>
+        <td class="text-right"> 
+        <a title="" href="/admin/editproduct/<%=data._id%>" class="btn btn-outline-success" id="btn"> <i class="fa fa-edit"></i></a> 
+        <a href="/deleteproduct/<%=data._id%>" class="btn btn-outline-danger" id="btn"> × Remove</a>
+        
+        </td>
+    </tr>
+    <% } %>
+    <% }else{ %>
+        <h1 style="font-weight: bolder; text-align: center;">Data Not Found!!</h1>
+   <% } %>
+    </tbody>
+    </table>
+    </div>
+    
+    </div> 
+    <%-include('../Includes/footer.ejs') %>

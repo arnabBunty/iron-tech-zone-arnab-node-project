@@ -1,0 +1,23 @@
+<%-include('../Includes/header.ejs') %>
+<link rel="stylesheet" href="/CSS/adminHome.css">
+<title><%=title%></title>
+</head>
+
+<%-include('../Includes/preloader.ejs') %>
+<%-include('../Includes/nav.ejs') %>
+<div class="login">
+<form class="box" action="/signinValue" method="POSt">
+    <h1>signin</h1>
+<input type="email" name="email" placeholder="Email" value="<%if(cookiedata.cookiedata){%><%=cookiedata.cookiedata.email%><%}%> " required>
+<span><h6 style="color: red!important;"><%if(message=="Invalid email"){%><%=message%><%}%></h6></span>
+<input type="password" name="pass" placeholder="Passsword" value="<%if(cookiedata.cookiedata){%><%=cookiedata.cookiedata.pass%><%}%>" required>
+<span><h6 style="color: red!important;"><%if(message!=="Invalid email"){%><%=message%><%}%></h6></span>
+<h6><input type="checkbox" name="checked"> Remember me </h6>
+<input type="hidden" name="_csrf" value="<%=csrf%>">
+<input type="submit" value="Login">
+</form>
+<h6 style="float: right;"><a href="/forgot" style="color:darkgoldenrod; background-color: transparent; text-decoration: none; font-size: smaller; ">Forgot Password</a></h6>
+<br><br>
+<h6>Don't have an account? <a href="/signup" style="color:antiquewhite; background-color: transparent; text-decoration: none;">Sign Up</a></h6>
+</div>
+<%-include('../Includes/footer.ejs') %>

@@ -1,0 +1,70 @@
+<%-include('../Includes/header.ejs') %>
+<link rel="stylesheet" href="/CSS/home.css">
+<title><%=title%></title>
+</head>
+
+<%-include('../Includes/preloader.ejs') %>
+<%-include('../Includes/nav.ejs') %>
+<div class="container" style="width: 100%; display: flex;">
+
+<form id="myForm" class="priceRange" action="/" method="GET">
+  <select class="box" name="price_range" id="mySelect" onchange="myFunction()">
+    <option value=" " selected>..Sort By..</option>
+    <option value="price_asc">Price: Low to high</option>
+    <option value="price_desc">Price: High to low</option>
+    <option value="name_asc">Name: A - Z</option>
+    <option value="name_desc">Name: Z - A</option>
+  </select>
+
+  <input type="hidden" name="_csrf" value="<%=csrf%>">
+  <br><br>
+</form>
+
+</div>
+<div class="card-deck">
+    <% if(products.length>0){
+        for(let data of products){ %>
+    <div class="page-inner">
+      <div class="card">
+        <div class="el-wrapper">
+          <div class="box-up">
+            <img class="img" src="<%=data.prod_img%>" alt="">
+            <div class="img-info">
+              <div class="info-inner">
+                <span class="p-name"><%=data.prod_name%></span>
+              </div>
+              <div class="a-size"><span class="size"><a href="/details/<%=data._id%>"><button class="btn btn-outline-secondary">View Detail</button></a></div>
+            </div>
+          </div>
+  
+          <div class="box-down">
+            <div class="h-bg">
+              <div class="h-bg-inner"></div>
+            </div>
+            <a class="cart">
+              <span class="price">&#8377;<%=data.prod_price%></span>
+              <span class="add-to-cart">
+                <form action="/postcart/null" method="post">
+                  <input type="hidden" name="_csrf" value="<%=csrf%>">
+                  <input type="hidden" name="prod_id" value="<%=data._id%>">
+                <span class="txt"><button style="background: transparent; border: none;color: white; font-size: medium; font-weight: bold;">Add in cart</button></span>
+              </form>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <% } %>
+    <% }else{ %>
+        <center><h1 style="font-weight: bolder;">Product Not Found!!</h1></center>
+   <% } %>
+  </div>
+  <script>
+    function myFunction() {
+      document.getElementById("myForm").submit();
+    }
+    </script>
+
+<%-include('../Includes/footer.ejs') %>

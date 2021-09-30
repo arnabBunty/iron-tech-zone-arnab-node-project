@@ -1,0 +1,69 @@
+<%-include('../Includes/header.ejs') %>
+<link rel="stylesheet" href="/CSS/cart.css">
+<title><%=title%></title>
+</head>
+
+<%-include('../Includes/preloader.ejs') %>
+<%-include('../Includes/nav.ejs') %>
+    
+    
+        <div class="col-50">
+          <div class="container" style="background-color: rgb(255, 255, 255);">
+            <h4><center style="font-weight: bolder; margin-top: 20px;">Shopping Cart(<%= products.length %> Items)</center>
+            </h4>
+            <% if (products.length > 0) { 
+              let price=0;
+              let amount=0;%>
+            <% for(let p of products) { %>
+            <p class="product"><a href="/details/<%=p.products._id%>" style="color:rgb(48, 28, 2); background-color: transparent; text-decoration: none;"><img src="<%=p.products.prod_img%>" height="60px" width="60px" title="<%= p.products.prod_name %>">&ensp; <%= p.products.prod_name %></a>
+                
+                <div class="quantity buttons_added">
+                  Quantity: &ensp; 
+
+                  <form action="/postcart/<%=p.quantity-1%>" method="POST" >
+                    <input type="hidden" name="prod" value="<%=p.product_id%>">
+                  <input type="submit" value="-" class="minus" title="Decrease Product Quantity">
+                <input type="hidden" name="_csrf" value="<%=csrf%>">
+                </form>
+
+                <input type="number" name="quantity" value="<%=p.quantity%>" title="Qty" class="input-text qty text" size="4" pattern="" inputmode="" disabled>
+
+                <form action="/postcart/<%=p.quantity+1%>" method="POST" >
+                  <input type="hidden" name="prod" value="<%=p.product_id%>">
+                  <input type="submit" value="+" class="plus" title="Increase Product Quantity">
+                <input type="hidden" name="_csrf" value="<%=csrf%>">
+                <br><br>
+              </form>
+            </div>
+              
+                <form action="/cart-delete-item" method="POST">
+                <input type="hidden" value="<%= p.products._id %>" name="prod_id">
+                <input type="hidden" name="_csrf" value="<%=csrf%>"><br>
+                <button class="delete" type="submit" style="background: transparent; border: none;"><i class="fas fa-trash-alt" style="color: red;" title="Delete product from cart"></i></button>
+            </form> 
+            <%price=p.quantity*p.products.prod_price%>
+            <span class="price"><i class="fa fa-inr"></i> <%=p.products.prod_price%> x <%=p.quantity%> = <i style="font-weight: bold;"><%=price %></i></span></p><br>
+            <hr style="background-color: crimson;">
+            <% } %>
+            <br>
+            <% for(let p of products) { 
+              prc=p.quantity*p.products.prod_price;
+              amount +=parseInt(prc);%>
+              <% } %>
+            
+            <p class="total" >Total <span style="color:black"><b><i class="fa fa-inr"></i><%=amount %></b></span></p>
+              <form action="/checkout" method="GET">
+                  <input type="hidden" name="total" id="" value="<%=amount %>">
+                <input type="hidden" name="_csrf" value="<%=csrf%>">
+                <button class="btn" type="submit">Place Order</button>
+            </form>
+            <% } else { %>
+              <h1 align="center">Empty Cart!</h1>
+              <br><br>
+              <h2 align="center"><a href="/">Continue Shopping</a></h2>
+          <% } %>
+          </div>
+        </div>
+    <%-include('../Includes/footer.ejs') %>
+
+    

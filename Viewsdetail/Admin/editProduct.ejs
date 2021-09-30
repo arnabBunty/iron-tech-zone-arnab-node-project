@@ -1,0 +1,31 @@
+<%-include('../Includes/header.ejs') %>
+<link rel="stylesheet" href="/CSS/addproduct.css">
+<title><%=title%></title>
+</head>
+
+<%-include('../Includes/preloader.ejs') %>
+<%-include('../Includes/nav.ejs') %>
+<!-- ID,name,description -->
+<div class="container-fluid px-1 py-5 mx-auto">
+    <div class="row d-flex justify-content-center">
+        <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
+            
+            <div class="card">
+                <h1>Edit Product</h1><br>
+                <form class="form-card" method="POST" action="/editproduct" enctype="multipart/form-data">
+                    <input type="hidden" name="prod_id" value="<%=productValue._id%>">
+                    <input type="text" name="prod_name" placeholder="Product Name" required value="<%=productValue.prod_name%>">
+                    <input type="number" name="prod_price" placeholder="Product Price" required value="<%=productValue.prod_price%>">
+                    <input type="text" name="prod_qty" placeholder="Product Quantity" required value="<%=productValue.prod_qty%>">
+                    <input type="file" name="prod_img"><img src="../../<%=productValue.prod_img%>" height="100px" width="100px">
+                    <input type="text" name="prod_cat" placeholder="Product Category" required value="<%=productValue.prod_cat%>">
+                    <textarea name="prod_desc" placeholder="Product Description" required><%=productValue.prod_desc%></textarea>
+                    <input type="hidden" name="_csrf" value="<%=csrf%>">
+                    <input type="submit" value="Update">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%-include('../Includes/footer.ejs') %>

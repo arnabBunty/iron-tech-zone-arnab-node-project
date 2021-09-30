@@ -1,0 +1,25 @@
+<%-include('../Includes/header.ejs') %>
+<link rel="stylesheet" href="/CSS/adminHome.css">
+<title><%=title%></title>
+</head>
+
+<%-include('../Includes/preloader.ejs') %>
+<%-include('../Includes/nav.ejs') %>
+<div class="login">
+<form class="box" action="<%if(after==true){%>/forgotvalue<%}else{%>/forgot<%}%>" method="<%if(after==true){%>POST<%}else{%>GET<%}%>">
+    <h3>Reset Password</h3>
+<input class="<%=email ? 'denger' : ' '%>" type="email" name="email" placeholder="Email" value="<%if(email){%><%=email%><%}%>" required <%if(email){%>readonly<%}%>>
+<%if(email){%><span class="right"><i class="fas fa-check-double"></i></span><%}%>
+
+<%if(after==true){%>
+<input type="hidden" name="id" value="<%=id%>">
+<input type="password" name="pass1" placeholder="New Password" required>
+<input type="password" name="pass2" placeholder="Confirm Password" required>
+<input type="hidden" name="_csrf" value="<%=csrf%>">
+    <%}%>
+<span><h6 style="color: red!important;"><%if(message){%><%=message%><%}%></h6></span>
+<span><h6 style="color: green!important;"><%if(success){%><%=success%><%}%></h6></span>
+<input type="submit" value="Reset">
+</form>
+</div>
+<%-include('../Includes/footer.ejs') %>
