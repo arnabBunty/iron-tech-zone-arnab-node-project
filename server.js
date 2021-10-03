@@ -76,7 +76,11 @@ userModel.findById(req.session.user._id) .then(userValue=>{
     console.log(err)); 
 
 CartModel.find({user_id:req.session.user._id}).then(result=>{
-    res.locals.cart=result;
+    if(!result){
+        res.locals.cart=null;
+    }else{
+        res.locals.cart=result;
+    }
     }).catch(err=> 
         console.log(err)); 
 });
@@ -89,7 +93,6 @@ appServer.use((req,res,next)=>{
     if(!req.session.isLogged){
         res.locals.utype=null;
         res.locals.name=null;
-        res.locals.cart=null;
     }else{
         res.locals.utype=req.user.utype;
         res.locals.name=req.user.first_name;

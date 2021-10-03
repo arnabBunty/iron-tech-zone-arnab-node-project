@@ -25,6 +25,10 @@ const orderSchema = new Schema({
     userId: {
       type: String,
       required: true
+    },
+    userDetails_id:{
+      type: String,
+      required: true
     }
   },
   total:{

@@ -11,6 +11,9 @@ routing.get('/cart',isAuth,shopController.getCart);
 routing.post('/cart-delete-item',isAuth,shopController.postCartItemDelete);
 routing.get('/checkout',isAuth,shopController.getCheckout);
 routing.post('/place-order',isAuth,shopController.postPlaceorder);
+routing.get('/myorder',isAuth,shopController.getMyorder);
+routing.post('/cancelorder',isAuth,shopController.postCancelOrder);
+routing.get('/orderdetails/:id',isAuth,shopController.getOrderDetails);
 routing.get('*',shopController.pnf);
 
 
