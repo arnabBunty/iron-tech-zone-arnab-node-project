@@ -173,16 +173,17 @@ exports.forgot=(req,res)=>{
                     success:null,
                     message:message,
                     id:null,
+                    click:false,
                     path:'/forgot'
                 })
             }else{
-                createMailer.sendMail({
-                    to:email,
-                    from:"arnab.gupta1878@gmail.com",
-                    subject:"Reset Password",
-                    html:`<h1>For reset password <a href="http://localhost:7278/forgot?email=${email}&id=${user._id}">click here!!</a></h1>`
-                })
-                req.flash('success','Reset mail sent to your mail id.');
+                // createMailer.sendMail({
+                //     to:email,
+                //     from:"arnab.gupta1878@gmail.com",
+                //     subject:"Reset Password",
+                //     html:`<h1>For reset password <a href="http://localhost:7278/forgot?email=${email}&id=${user._id}">click here!!</a></h1>`
+                // })
+                req.flash('success','Click to reset password');
                 let success=req.flash('success');
                 // console.log(success);
     if(success.length>0){
@@ -193,10 +194,11 @@ exports.forgot=(req,res)=>{
                 return res.render('Auth/forgot',{
                     title:'forgot',
                     after:false,
-                    email:null,
+                    email:email,
                     success:success,
                     message:null,
-                    id:null,
+                    id:user.id,
+                    click:true,
                     path:'/forgot'
                 })
             }
@@ -215,6 +217,7 @@ exports.forgot=(req,res)=>{
             success:null,
             message:message,
             id:req.query.id,
+            click:false,
             path:'/forgot'
         })
     }else{
@@ -231,6 +234,7 @@ exports.forgot=(req,res)=>{
             success:null,
             message:message,
             id:null,
+            click:false,
             path:'/forgot'
     })
     }
@@ -258,6 +262,7 @@ exports.postForgot=(req,res)=>{
             success:null,
             message:message,
             id:id,
+            click:false,
             path:'/forgot'
         })
     }else{
@@ -265,8 +270,20 @@ exports.postForgot=(req,res)=>{
             userModel.findByIdAndUpdate(id,{
                 pass:hashPass
             }).then(result=>{
-                console.log("Password Changed");
-                return res.redirect('/signin')
+                req.flash('success','Password Successfully Changed');
+                // console.log("Password Changed");
+                let message=req.flash('success');
+    if(message.length>0){
+        message=message[0];
+    }else{
+        message=null
+    }
+    return res.render('Auth/signin',{
+        title:'Sign In',
+        message:message,
+        cookiedata:req.cookies,
+        path:'/signin'
+    })
             }).catch(err=>{
                 console.log(err);
             })

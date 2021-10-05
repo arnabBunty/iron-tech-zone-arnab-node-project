@@ -36,8 +36,12 @@ const orderSchema = new Schema({
     required:true
   },
   order_time:{
-      type:Date,
+      type:String,
       required:true
+  },
+  delivery_time:{
+    type:String,
+    required:true
   }
 });
 

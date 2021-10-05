@@ -44,7 +44,7 @@ body{
 
 }
 
-.box input[type= 'submit']{
+.box input[type= 'submit'],input[type= 'button']{
     border: 0;
     background: none;
     display: block;
@@ -59,7 +59,7 @@ body{
     transition: 0.50s;
 }
 
-.box input[type= 'submit']:hover{
+.box input[type= 'submit']:hover,input[type= 'button']:hover{
     background: yellowgreen;
 }
 .login h6{

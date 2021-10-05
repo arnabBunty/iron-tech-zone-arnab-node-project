@@ -12,7 +12,7 @@
                 <div class="col my-auto">
                     <h4 class="mb-0">Thanks for your Order,<span class="change-color"><%=name%></span> !</h4>
                 </div>
-                <h2 style="float: right;"><a href="/myorder"><i class="fas fa-arrow-left"></i>BACK</a></h2>
+                <h2 style="float: right;"><a href="/myorder"><i class="fas fa-arrow-left"></i><i class="back">BACK</i></a></h2>
             </div>
         </div>
        
@@ -20,7 +20,7 @@
             <div class="row justify-content-between mb-3">
                 <div class="col-auto">
                     
-                    <h6 class="color-1 mb-0 change-color">Order Date: <%=orders.order_time%></h6>
+                    <h6 class="color-1 mb-0 change-color" style="width: 400px;">Order Status:  <%=orders.order_status%></h6>
                 </div>
                 <div class="col-auto "> <small>Invoice Number : <%=orders._id%></small> </div>
             </div>
@@ -31,11 +31,11 @@
                     <div class="card card-2">
                         <div class="card-body">
                             <div class="media">
-                                <div class="sq align-self-center "> <img class="img-fluid my-auto align-self-center mr-2 mr-md-4 pl-0 p-0 m-0" src="/<%=p.product.prod_img%>" width="135" height="135" /> </div>
+                                <div class="sq align-self-center "> <a href="/details/<%=p.product._id%>"><img class="img-fluid my-auto align-self-center mr-2 mr-md-4 pl-0 p-0 m-0" src="/<%=p.product.prod_img%>" width="135" height="135" /></a> </div>
                                 <div class="media-body my-auto text-right">
                                     <div class="row my-auto flex-column flex-md-row">
                                         <div class="col my-auto">
-                                            <h6 class="mb-0"> <%=p.product.prod_name%></h6>
+                                            <a href="/details/<%=p.product._id%>"><h6 class="mb-0"> <%=p.product.prod_name%></h6></a>
                                         </div>
                                         <div class="col my-auto"> <small>Qty : <%=p.quantity%></small></div>
                                         <div class="col my-auto">
@@ -49,12 +49,9 @@
                                 <div class="col-md-3 mb-3"> 
                                     </div>
                                 <div class="col mt-auto">
-                                    <div class="progress my-auto">
-                                        <div class="progress-bar progress-bar rounded" style="width: 62%" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
                                     <div class="media row justify-content-between ">
                                         <!-- <div class="col-auto text-right"><span> <small class="text-right mr-sm-2"></small> <i class="fa fa-circle active"></i> </span></div> -->
-                                        <div class="flex-col"> <span> <small class="text-right mr-sm-2"><%=orders.order_status%></small><i class="fa fa-circle active"></i></span></div>
+                                        <div class="flex-col"></div>
                                         <!-- <div class="col-auto flex-col-auto"><small class="text-right mr-sm-2">Delivered</small><span> <i class="fa fa-circle"></i></span></div> -->
                                     </div>
                                 </div>
@@ -106,8 +103,8 @@
             </div>
             <div class="row invoice ">
                 <div class="col">
-                    <p class="mb-1"> Invoice Number : <%=orders._id%></p>
-                    <p class="mb-1">Invoice Date : <%=orders.order_time%></p>
+                    <p class="mb-1" style="">Shipping Details : <br><%=details.name%>, <br> <%=details.address%> <br> Phone no. : <%=details.phn%> <br>Expected Delivery: <%=orders.delivery_time%></p><br>
+                    <p class="mb-1">Order Date : <%=orders.order_time%></p>
                 </div>
             </div>
         </div>

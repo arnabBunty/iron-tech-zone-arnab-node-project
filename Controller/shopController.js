@@ -187,6 +187,11 @@ exports.postPlaceorder=(req,res)=>{
           })
           userData.save().then(userResult=>{
               console.log("User Details Saved");
+                var today = new Date().toString().split(' ');
+                    var delivery = new Date();
+                    delivery.setDate(delivery.getDate()+7);
+                    delivery=delivery.toDateString().split(' ');
+                console.log(delivery);
             const Data=new OrderModel({
                 products:products,
                 order_status:"Orderd",
@@ -196,7 +201,8 @@ exports.postPlaceorder=(req,res)=>{
                     userDetails_id:userResult._id
                   },
                   total:total,
-                  order_time: new Date(Date.now())
+                  order_time: today[0]+", "+today[2]+"-"+today[1]+"-"+today[3]+", Time: "+today[4],
+                  delivery_time: delivery[0]+", "+delivery[2]+"-"+delivery[1]+"-"+delivery[3]
             });
             Data.save().then(result=>{
                 CartModel.deleteMany({user_id:req.user._id}).then(result=>{
@@ -243,12 +249,17 @@ exports.postCancelOrder=(req,res)=>{
 }
 
 exports.getOrderDetails=(req,res)=>{
-    const id=req.params.id
+    const id=req.params.id;
     OrderModel.findById(id).then(result=>{
-        return res.render('Shop/orderdetails',{
-            path:'/orderdetails',
-            title:"Order Details",
-            orders:result
+        UserDetailsModel.findById(result.user.userDetails_id).then(userDetails=>{
+            return res.render('Shop/orderdetails',{
+                path:'/orderdetails',
+                title:"Order Details",
+                orders:result,
+                details:userDetails
+            })
+        }).catch(err=>{
+            console.log(err);
         })
     })
 }

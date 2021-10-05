@@ -29,11 +29,11 @@
                     <div class="card card-2">
                         <div class="card-body">
                             <div class="media">
-                                <div class="sq align-self-center "> <a href="/orderdetails/<%=p._id%>"><img class="img-fluid my-auto align-self-center mr-2 mr-md-4 pl-0 p-0 m-0" src="/<%=p.products[0].product.prod_img%>" width="135" height="135" /></a> </div>
+                                <div class="sq align-self-center "> <img class="img-fluid my-auto align-self-center mr-2 mr-md-4 pl-0 p-0 m-0" src="/<%=p.products[0].product.prod_img%>" width="135" height="135" /></div>
                                 <div class="media-body my-auto text-right">
                                     <div class="row my-auto flex-column flex-md-row">
                                         <div class="col my-auto">
-                                            <a href="/orderdetails/<%=p._id%>"><h6 class="mb-0"> <%=p.products[0].product.prod_name%> + <%=p.products.length-1%></h6></a>
+                                            <h6 class="mb-0"> <%=p.products[0].product.prod_name%><%if(p.products.length<=1){}else{%> + <%=p.products.length-1%> <%}%></h6>
                                         </div>
                                         <div class="col my-auto"> <small>Qty : <%=p.products.length%></small></div>
                                         <div class="col my-auto">
@@ -45,12 +45,13 @@
                             <hr class="my-3 ">
                             <div class="row">
                                 <div class="col-md-3 mb-3"> 
+                                    <button type="button" class="btn btn-primary d-flex mx-auto btn-sm"><a style="text-decoration:none; color:inherit;" href="/orderdetails/<%=p._id%>"> View Details </a></button>
                                     <!-- Button to Open the Modal --> 
                                     <button type="button" class="btn btn-primary d-flex mx-auto btn-sm" data-toggle="modal" data-target="#myModal<%=p._id%>"> Track your order </button> 
+
+                                    <button type="button" class="btn btn-primary d-flex mx-auto btn-sm" data-toggle="modal" data-target="#cancel<%=p._id%>" <%if(p.order_status=="Cancelled"){%>disabled<%}%> > Cancel order </button>
+                                    
                                     <!-- The Modal -->
-
-                                    <button type="button" class="btn btn-primary d-flex mx-auto btn-sm" data-toggle="modal" data-target="#cancel<%=p._id%>"> Cancel order </button>
-
                                     <div class="modal fade" id="cancel<%=p._id%>">
                                         <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
@@ -62,6 +63,7 @@
                                                     <form action="/cancelorder" method="POST">
                                                         <center>
                                                     <input type="email" name="email" placeholder="Confirm Your Email Id" required>
+                                                    <input type="text" placeholder="Reason for Cancellation">
                                                         <input type="hidden" name="_csrf" value="<%=csrf%>">
                                                         <input type="hidden" name="id" value="<%=p._id%>">
                                                         <button type="submit" class="btn btn-danger d-flex mx-auto btn-sm"> Cancel Order </button> </center>
@@ -91,12 +93,12 @@
                                                         <div class="col-9">
                                                             <div class="details d-table">
                                                                 <div class="d-table-row">
-                                                                    <div class="d-table-cell"> Shipped with </div>
-                                                                    <div class="d-table-cell"> UPS Expedited </div>
-                                                                </div>
+                                                                    <div class="d-table-cell"> Shipping with </div>
+                                                                    <div class="d-table-cell"> BlueDart </div>
+                                                                </div><br>
                                                                 <div class="d-table-row">
                                                                     <div class="d-table-cell"> Estimated Delivery </div>
-                                                                    <div class="d-table-cell"> <%=p.order_time%> </div>
+                                                                    <div class="d-table-cell"> <%=p.delivery_time%> </div>
                                                                 </div>
                                                             </div>
                                                         </div>

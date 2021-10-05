@@ -10,7 +10,6 @@
     <h3>Reset Password</h3>
 <input class="<%=email ? 'denger' : ' '%>" type="email" name="email" placeholder="Email" value="<%if(email){%><%=email%><%}%>" required <%if(email){%>readonly<%}%>>
 <%if(email){%><span class="right"><i class="fas fa-check-double"></i></span><%}%>
-
 <%if(after==true){%>
 <input type="hidden" name="id" value="<%=id%>">
 <input type="password" name="pass1" placeholder="New Password" required>
@@ -19,7 +18,10 @@
     <%}%>
 <span><h6 style="color: red!important;"><%if(message){%><%=message%><%}%></h6></span>
 <span><h6 style="color: green!important;"><%if(success){%><%=success%><%}%></h6></span>
-<input type="submit" value="Reset">
+<input type="<%=click==true ? 'hidden' : 'submit'%>" value="Reset">
 </form>
+<%if(click==true){%>
+    <a href="/forgot?email=<%=email%>&id=<%=id%>"><input style="width: auto;" type="button" value="Change Password"></a>
+    <%}%>
 </div>
 <%-include('../Includes/footer.ejs') %>

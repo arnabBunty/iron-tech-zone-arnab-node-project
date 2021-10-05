@@ -8,9 +8,9 @@
 <div class="login">
 <form class="box" action="/signinValue" method="POSt">
     <h1>signin</h1>
-<input type="email" name="email" placeholder="Email" value="<%if(cookiedata.cookiedata){%><%=cookiedata.cookiedata.email%><%}%> " required>
+<input type="email" name="email" placeholder="Email" value="<%if(cookiedata.cookiedata){%><%=cookiedata.cookiedata.email%><%}%> ">
 <span><h6 style="color: red!important;"><%if(message=="Invalid email"){%><%=message%><%}%></h6></span>
-<input type="password" name="pass" placeholder="Passsword" value="<%if(cookiedata.cookiedata){%><%=cookiedata.cookiedata.pass%><%}%>" required>
+<input type="password" name="pass" placeholder="Passsword" value="<%if(cookiedata.cookiedata){%><%=cookiedata.cookiedata.pass%><%}%>">
 <span><h6 style="color: red!important;"><%if(message!=="Invalid email"){%><%=message%><%}%></h6></span>
 <h6><input type="checkbox" name="checked"> Remember me </h6>
 <input type="hidden" name="_csrf" value="<%=csrf%>">
