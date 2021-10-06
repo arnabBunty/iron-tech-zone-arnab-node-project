@@ -21,10 +21,10 @@
           <a class="nav-link <%=path === '/admin/viewproduct' ? 'active' : ' '%>" href="/admin/viewproduct">View Product</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link <%=path === '#' ? 'active' : ' '%>" href="#">View Users</a>
+          <a class="nav-link <%=path === '/admin/viewuser' ? 'active' : ' '%>" href="/admin/viewuser">Manage Users</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Orders</a>
+          <a class="nav-link <%=path === '/admin/orders' ? 'active' : ' '%>" href="/admin/orders">Manage Orders</a>
         </li>
         <%}else{%>
         <li class="nav-item">

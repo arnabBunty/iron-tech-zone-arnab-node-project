@@ -11,6 +11,9 @@ routing.post('/editproduct',isAdmin,adminController.postEditproduct);
 routing.get('/deleteproduct/:p_id',isAdmin,adminController.getDeleteproduct);
 // routing.post('/deleteproduct',adminController.postDeleteproduct);
 routing.get('/admin/viewproduct',isAdmin,adminController.getProdview);
+routing.get('/admin/viewuser',isAdmin,adminController.getUserview);
+routing.post('/updateuser',isAdmin,adminController.postUpdateuser);
+routing.get('/admin/orders',isAdmin,adminController.getManageorders);
 
 
 

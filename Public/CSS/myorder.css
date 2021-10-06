@@ -315,7 +315,7 @@ input[type=email]{
     border-radius: 3px;
     text-align:center;
   }
-  input[type=text]{
+  input[type=text],input[type=password]{
     width: 50%;
     margin-bottom: 20px;
     padding: 12px;
@@ -323,6 +323,14 @@ input[type=email]{
     border-radius: 3px;
     text-align:center;
 
+  }
+  select,option{
+    width: 25%;
+    margin-bottom: 20px;
+    padding: 12px;
+    border: none;
+    border-radius: 3px;
+    text-align:center;
   }
 /* .fa {
     font-size: xx-large;

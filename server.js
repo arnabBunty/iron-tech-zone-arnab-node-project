@@ -93,9 +93,11 @@ appServer.use((req,res,next)=>{
     if(!req.session.isLogged){
         res.locals.utype=null;
         res.locals.name=null;
+        res.locals.id=null;
     }else{
         res.locals.utype=req.user.utype;
         res.locals.name=req.user.first_name;
+        res.locals.id=req.user.id;
     }
     // res.locals.csrfToken="hii";
     next();

@@ -1,5 +1,8 @@
 // const arr=[];
 const ProductModel=require("../Model/product");
+const UserModel=require("../Model/user");
+const OrderModel=require("../Model/order");
+const UserDetailsModel=require("../Model/user_details");
 
 
 
@@ -139,6 +142,57 @@ exports.getProdview=(req,res)=>{
 })
 }
 }
+
+exports.getUserview=(req,res)=>{
+    UserModel.find().then(result=>{
+       return res.render('Admin/viewUser',{
+            title:'Users',
+            users:result,
+            path:'/admin/viewuser'
+        }) 
+    }).catch(err=>{
+        console.log(err);
+    })
+
+}  
+
+
+exports.postUpdateuser=(req,res)=>{
+    const email=req.body.email;
+    const id=req.body.id;
+    const utype=req.body.utype;
+    if(email===req.user.email && utype){
+        UserModel.findByIdAndUpdate(id,{utype:utype}).then(result=>{
+            console.log("User Type Updated!!");
+            return res.redirect('/admin/viewuser');
+        }).catch(err=>{
+            console.log(err);
+        })
+    }else if(email===req.user.email && !utype){
+        UserModel.findByIdAndDelete(id).then(result=>{
+            console.log("User Deleted!!");
+            return res.redirect('/admin/viewuser');
+        }).catch(err=>{
+            console.log(err);
+        })
+    }else{
+        console.log("Email not match!!");
+        return res.redirect('/admin/viewuser');
+    }
+}
+
+exports.getManageorders=(req,res)=>{
+    OrderModel.find().then(result=>{
+       return res.render('Admin/orders',{
+            title:'Manage Orders',
+            orders:result,
+            path:'/admin/orders'
+        }) 
+    }).catch(err=>{
+        console.log(err);
+    })
+
+}  
 
 
 function escapeRegex(text) {
