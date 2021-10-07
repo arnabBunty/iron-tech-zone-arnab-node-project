@@ -1,0 +1,119 @@
+<%-include('../Includes/header.ejs') %>
+<title><%=title%></title>
+<link rel="stylesheet" href="/CSS/viewuser.css">
+
+
+</head>
+<%-include('../Includes/preloader.ejs') %>
+    <%-include('../Includes/nav.ejs') %>
+  <div class="container">
+      <form action="/admin/viewproduct" method="GET">
+        <input type="hidden" name="_csrf" value="<%=csrf%>">
+    <button class="btn btn-success" style="border-radius: 25px;" name="sort" value="asc"><a style="font-size: small; font-weight: 500; color: rgb(107, 9, 50);" >Ascending</a></button>
+    <button class="btn btn-success" style="border-radius: 25px;" name="sort" value="desc" ><a style="font-size: small; font-weight: 500; color: rgb(107, 9, 50);" >Descending</a></button>
+</form>
+    <br>
+    <br>
+    <div class="card">
+    <table class="table table-hover shopping-cart-wrap">
+    <thead class="text-muted">
+    <tr>
+      <th scope="col">User Name <a style="float: right;"></a></th>
+      <th scope="col" width="120">Admin/User</th>
+      <th scope="col">Phone No.</th>
+      <th scope="col" width="250" class="text-right">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+        <% if(users.length>0){
+            for(let data of users){ %>
+    <tr>
+        <td>
+    <figure class="media">
+        <!-- <div class="img-wrap"><img src="https://i.imgur.com/GMmCQHC.png" class="img-thumbnail img-sm"></div> -->
+        <figcaption class="media-body">
+            <h6 class="title text-truncate"><%=data.first_name%> <%=data.last_name%></h6>
+            <dl class="param param-inline small">
+              <dt>Email Id: </dt>
+              <dd><%=data.email%> </dd>
+            </dl>
+        </figcaption>
+    </figure> 
+        </td>
+        <td> 
+            <div class="price-wrap"> 
+                <var class="price"><%=data.utype%></var> 
+            </div>
+        </td>
+        <td><%=data.phn%></td>
+        <td class="text-right"> 
+        <!-- <a title="" href="/admin/editproduct/<%=data._id%>" class="btn btn-outline-success" id="btn"> <i class="fa fa-edit"></i></a> 
+        <a href="/deleteproduct/<%=data._id%>" class="btn btn-outline-danger" id="btn"> × User</a> -->
+        <div class="col-md-12 mb-12">
+        <button style="padding: 10px!important; " type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#utype<%=data._id%>" <%=data._id== id ? 'hidden' : '' %>> Change User type </button>
+            <%if(data._id == id){%>
+                <h3>Sorry, You are Logged in !!</h3>
+            <%}%>
+        <button style="padding: 10px!important; " type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#deluser<%=data._id%>" <%=data.utype=="Admin" ? 'hidden' : '' %>> Delete User </button>
+
+        <div class="modal fade" id="utype<%=data._id%>">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content utype">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title mx-auto">Changing User Type of <%=data.first_name%> <%=data.last_name%><br></h4> <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div> <!-- Modal body -->
+                    <div class="modal-body">
+                        <form action="/updateuser" method="POST">
+                            <center>
+                        <input type="email" name="email" placeholder="Confirm Your Email Id" required><br>
+                                <label for="">User Type: </label>
+                        <select name="utype" required>
+                            <option <%=data.utype=="Admin" ? 'selected' : '' %> value="Admin">Admin</option>
+                            <option <%=data.utype=="User" ? 'selected' : '' %> value="User">User</option>
+                          </select>
+                          <input type="hidden" name="id" value="<%=data._id%>">
+                            <input type="hidden" name="_csrf" value="<%=csrf%>">
+                            <button type="submit" class="btn btn-success d-flex mx-auto btn-sm"> Update User </button> </center>
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="deluser<%=data._id%>">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content delete">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title mx-auto">Delete User <%=data.first_name%> <%=data.last_name%><br></h4> <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div> <!-- Modal body -->
+                    <div class="modal-body">
+                        <form action="/updateuser" method="POST">
+                            <center>
+                        <input type="email" name="email" placeholder="Confirm Your Email Id" required>
+                        <br>
+                        <input type="text" placeholder="Reason for Delete User">
+                          <input type="hidden" name="id" value="<%=data._id%>">
+                            <input type="hidden" name="_csrf" value="<%=csrf%>">
+                            <button type="submit" class="btn btn-danger d-flex mx-auto btn-sm"> Update User </button> </center>
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        </td>
+    </tr>
+    <% } %>
+    <% }else{ %>
+        <h1 style="font-weight: bolder; text-align: center;">Data Not Found!!</h1>
+   <% } %>
+    </tbody>
+    </table>
+    </div>
+    
+    </div> 
+    <%-include('../Includes/footer.ejs') %>

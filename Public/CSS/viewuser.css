@@ -1,0 +1,278 @@
+.modal-content{
+    border-color: #f0f0f0;
+    border-radius: 20px!important;
+}
+.delete{
+    background-color: #c26765;
+}
+.utype{
+    background-color: #64b456;
+}
+
+
+@media (min-width: 576px) {
+    .modal-dialog {
+        max-width: 750px;
+        margin: 1.75rem auto
+    }
+}
+
+.show {
+    padding: 0
+}
+
+.modal-header {
+    border-bottom: none;
+    text-align: center
+}
+
+.modal-header .close {
+    padding: 1rem 1rem;
+    margin: -1rem -1rem -1rem 0;
+    color: #fff
+}
+
+:-moz-any-link:focus {
+    outline: none
+}
+
+.modal-title {
+    line-height: 3rem
+}
+
+.modal-body {
+    padding: 1rem
+}
+
+#progressbar {
+    margin-bottom: 3vh;
+    overflow: hidden;
+    color: white;
+    padding-left: 0px;
+    margin-top: 3vh
+}
+
+#progressbar li {
+    list-style-type: none;
+    font-size: 0.8rem;
+    width: 25%;
+    float: left;
+    position: relative;
+    font-weight: 400;
+    color: white
+}
+
+#progressbar #step1:before {
+    content: "";
+    color: white;
+    width: 20px;
+    height: 20px;
+    margin-left: 0px !important
+}
+
+#progressbar #step2:before {
+    content: "";
+    color: #fff;
+    width: 20px;
+    height: 20px;
+    margin-left: 32%
+}
+
+#progressbar #step3:before {
+    content: "";
+    color: #fff;
+    width: 20px;
+    height: 20px;
+    margin-right: 32%
+}
+
+#progressbar #step4:before {
+    content: "";
+    color: rgb(151, 149, 149, 0.651);
+    width: 20px;
+    height: 20px;
+    margin-right: 0px !important
+}
+
+#progressbar li:before {
+    line-height: 29px;
+    display: block;
+    font-size: 12px;
+    background: rgb(151, 149, 149);
+    border-radius: 50%;
+    margin: auto;
+    z-index: -1;
+    margin-bottom: 1vh
+}
+
+#progressbar li:after {
+    content: '';
+    height: 3px;
+    background: rgb(151, 149, 149, 0.651);
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    margin-bottom: 2vh;
+    top: 8px;
+    z-index: 1
+}
+
+.progress-track {
+    padding: 0 8%
+}
+
+#progressbar li:nth-child(2):after {
+    margin-right: auto
+}
+
+#progressbar li:nth-child(1):after {
+    margin: auto
+}
+
+#progressbar li:nth-child(3):after {
+    float: left;
+    width: 68%
+}
+
+#progressbar li:nth-child(4):after {
+    margin-left: auto;
+    width: 132%
+}
+
+#progressbar li.active:before,
+#progressbar li.active:after {
+    background: white
+}
+
+#three {
+    font-size: 1.2rem
+}
+
+@media (max-width: 767px) {
+    #three {
+        font-size: 1rem
+    }
+}
+
+/* .details {
+    padding: 2rem;
+    font-size: 1.4rem; 
+     line-height: 3.5rem 
+} */
+
+@media (max-width: 767px) {
+    .details {
+        padding: 2rem 0;
+        font-size: 1rem;
+        line-height: 2.5rem
+    }
+}
+
+.d-table {
+    width: 100%
+}
+
+.d-table-row {
+    width: 100%
+}
+
+.d-table-cell {
+    padding-left: 3rem
+}
+
+@media (max-width: 767px) {
+    .d-table-cell {
+        padding-left: 1rem
+    }
+}
+
+.col-3 {
+    display: grid;
+    text-align: end
+}
+
+.col-3 .d-table-row {
+    align-self: flex-end
+}
+
+input[type=email]{
+    width: 80%;
+    margin-bottom: 20px;
+    padding: 12px;
+    border: none;
+    border-radius: 3px;
+    text-align:center;
+  }
+  input[type=text],input[type=password]{
+    width: 50%;
+    margin-bottom: 20px;
+    padding: 12px;
+    border: none;
+    border-radius: 3px;
+    text-align:center;
+
+  }
+  select,option{
+    width: 25%;
+    margin-bottom: 20px;
+    padding: 12px;
+    border: none;
+    border-radius: 3px;
+    text-align:center;
+  }
+
+
+
+  /* View product page CSS */
+.container{
+    margin-top: 50px;
+}
+.param {
+    margin-bottom: 7px;
+    line-height: 1.4;
+}
+.param-inline dt {
+    display: inline-block;
+}
+.param dt {
+    margin: 0;
+    margin-right: 7px;
+    font-weight: 600;
+}
+.param-inline dd {
+    vertical-align: baseline;
+    display: inline-block;
+}
+
+.param dd {
+    margin: 0;
+    vertical-align: baseline;
+} 
+
+.shopping-cart-wrap .price {
+    color: #007bff;
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 5px;
+    display: block;
+}
+var {
+    font-style: normal;
+}
+
+.media img {
+    margin-right: 1rem;
+}
+
+.img-sm {
+    width: 90px;
+    max-height: 75px;
+    object-fit: cover;
+}
+
+#btn{
+    border-radius: 10px;
+}
+
+
+/* View product page CSS - END */

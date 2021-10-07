@@ -1,0 +1,80 @@
+<%-include('../Includes/header.ejs') %>
+
+<title><%=title%></title>
+</head>
+
+<%-include('../Includes/preloader.ejs') %>
+<%-include('../Includes/nav.ejs') %>
+
+<div class="container my-5">
+    <form action="controller" method="get" class="d-md-flex d-sm-block justify-content-between" > 
+        <input type="hidden" name="command" value="select-orders">
+        
+        <div style="background-color: rgb(255, 255, 255);" class="btn col-12 col-sm-12 col-md-8 col-lg-6"> 
+            <select name="searchType" class="btn btn-outline-dark col-3 col-sm-3">
+                <option value="orderId">Order ID</option>
+                <option value="created">Created</option>
+                <option value="customer">Customer</option>
+                <option value="status">Status</option>
+            </select> 
+            <input type="search" name="searchBy" class="col-6 col-sm-6"> 
+            <input type="submit" value="Search" class="btn btn-outline-dark"> </div>
+    </form>
+    <div class="d-md-flex d-none justify-content-md-between justify-content-sm-center align-content-center border-bottom border-2 my-2 bg-dark text-light p-3 rounded-3">
+        <div class="col-2 text-sm-center text-md-start align-self-center">
+            <h1 class="h5 fw-bold">Order ID</h1>
+        </div>
+        <div class="col-2 align-self-center">
+            <h1 class="h5 fw-bold">Created</h1>
+        </div>
+        <div class="col-3 align-self-center">
+            <h1 class="h5 fw-bold">Customer Email</h1>
+        </div>
+        <div class="col-3 align-self-center">
+            <h1 class="h5 fw-bold">Show details</h1>
+        </div>
+        <div class="col-2 align-self-center">
+            <h1 class="h5 fw-bold">Status</h1>
+        </div>
+    </div>
+    <% if(orders.length>0){
+        for(let data of orders){ %>
+    <div class="d-md-flex d-sm-block justify-content-md-between justify-content-sm-center text-center border-bottom border-2 my-2 bg-light p-2 rounded-3">
+        <div class="col-md-2 text-sm-center text-md-start align-self-center my-2">
+            <h1 class="h6" style="overflow:hidden; "><%=data._id%></h1>
+        </div>
+        <div class="col-md-2 text-sm-center text-md-start align-self-center my-2">
+            <h1 class="h6"><%=data.order_time%></h1>
+        </div>
+        <div class="col-md-3 text-sm-center text-md-start align-self-center my-2">
+            <h1 class="h6"><%=data.user.email%></h1>
+        </div>
+
+        <div class="col-md-2 text-sm-center text-md-start align-self-center my-2"> <a class="btn btn-outline-dark w-100" href="#">Details</a> </div>
+
+        <div class="col-md-3 text-sm-center text-md-start align-self-center my-2">
+            <form method="get" action="controller" class="d-flex btn-group"> 
+                <input type="hidden" name="command" value="refresh-order-status"> 
+                <select name="status" class="btn btn-outline-dark">
+                    <option value="Order Received" class="form-select-button"
+                    <%=data.order_status
+                    =="Orderd" ? 'selected' : '' %>>Order Received</option>
+                    <option value="In-Progress" class="form-select-button" <%=data.order_status
+                    =="In-Progress" ? 'selected' : '' %>>In-Progress</option>
+                    <option value="Shipped" class="form-select-button" <%=data.order_status
+                    =="Shipped" ? 'selected' : '' %>>Shipped</option>
+                    <option value="Delivered" class="form-select-button" <%=data.order_status
+                    =="Delivered" ? 'selected' : '' %>>Delivered</option>
+                    <option value="Cancelled" class="form-select-button" <%=data.order_status
+                    =="Cancelled" ? 'selected' : '' %>>Cancelled</option>
+                </select> 
+                <input type="submit" class="btn btn-outline-dark" value="OK"> 
+            </form>
+        </div>
+    </div>
+    <% } %>
+    <% }else{ %>
+        <h1 style="font-weight: bolder; text-align: center;">Data Not Found!!</h1>
+   <% } %>
+</div>
+<%-include('../Includes/footer.ejs') %>
