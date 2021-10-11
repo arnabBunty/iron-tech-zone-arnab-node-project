@@ -2,6 +2,7 @@ const productModel=require('../Model/product');
 const CartModel=require('../Model/cart');
 const OrderModel=require('../Model/order');
 const UserDetailsModel=require('../Model/user_details');
+const { ObjectId } = require('bson');
 
 exports.getHome=(req,res)=>{
     if(req.query.srch){
@@ -9,7 +10,7 @@ exports.getHome=(req,res)=>{
         const regex = new RegExp(escapeRegex(req.query.srch), 'gi');
         productModel.find({$or:[{prod_name:regex},{prod_desc:regex}]}).then(result=>{
             res.render('Shop/home',{
-                title:"Shop Home",
+                title:"Iron Tech Zone",
                 products:result,
                 path:'/'
             })
@@ -32,7 +33,7 @@ exports.getHome=(req,res)=>{
     }
     operation.then(result=>{
         res.render('Shop/home',{
-            title:"Shop Home",
+            title:"Iron Tech Zone",
             products:result,
             path:'/'
         })
@@ -42,7 +43,7 @@ exports.getHome=(req,res)=>{
     }else{
         productModel.find().then(product=>{
         res.render('Shop/home',{
-            title:"Shop Home",
+            title:"Iron Tech Zone",
             products:product,
             path:'/' 
             // <%=path === '/home' ? 'active' : ' '%>
@@ -261,6 +262,24 @@ exports.getOrderDetails=(req,res)=>{
         }).catch(err=>{
             console.log(err);
         })
+    })
+}
+
+exports.getContactPage=(req,res)=>{
+    res.render('Shop/contactus',{
+        path: '/contact-us',
+        title: "Contact Us"
+    })
+}
+
+exports.getMyprofile=(req,res)=>{
+    const id=req.user._id;
+    const time=ObjectId(id).getTimestamp().toString().split(' ');
+    console.log(time);
+    res.render('Shop/myprofile',{
+        path: '/my-profile',
+        title: "My Profile",
+        join:time[2]+'-'+time[1]+'-'+time[3]
     })
 }
 

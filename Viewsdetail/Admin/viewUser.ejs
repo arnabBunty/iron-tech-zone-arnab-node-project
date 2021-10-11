@@ -7,13 +7,6 @@
 <%-include('../Includes/preloader.ejs') %>
     <%-include('../Includes/nav.ejs') %>
   <div class="container">
-      <form action="/admin/viewproduct" method="GET">
-        <input type="hidden" name="_csrf" value="<%=csrf%>">
-    <button class="btn btn-success" style="border-radius: 25px;" name="sort" value="asc"><a style="font-size: small; font-weight: 500; color: rgb(107, 9, 50);" >Ascending</a></button>
-    <button class="btn btn-success" style="border-radius: 25px;" name="sort" value="desc" ><a style="font-size: small; font-weight: 500; color: rgb(107, 9, 50);" >Descending</a></button>
-</form>
-    <br>
-    <br>
     <div class="card">
     <table class="table table-hover shopping-cart-wrap">
     <thead class="text-muted">

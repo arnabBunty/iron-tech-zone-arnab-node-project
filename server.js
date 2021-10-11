@@ -68,24 +68,19 @@ appServer.use((req,res,next) => {
 { 
     return next(); 
 } 
-userModel.findById(req.session.user._id) .then(userValue=>{ 
-    req.user = userValue; 
-    // console.log('app' + req.user) 
-    next (); 
-}).catch(err=> 
-    console.log(err)); 
 
-CartModel.find({user_id:req.session.user._id}).then(result=>{
-    if(!result){
-        res.locals.cart=null;
-    }else{
-        res.locals.cart=result;
-    }
-    }).catch(err=> 
-        console.log(err)); 
-});
+userModel.findById(req.session.user._id) .then(userValue=>{  
+    CartModel.find({user_id:userValue._id}).then(result=>{
+        req.user = userValue;
+        req.cart=result;
+        next();
+        }).catch(err=>{ 
+            console.log(err)})
+    }).catch(err=>{ 
+    console.log(err)
+    }) 
 
-
+})
 
 appServer.use((req,res,next)=>{
     res.locals.isAuthenticated=req.session.isLogged;
@@ -94,12 +89,15 @@ appServer.use((req,res,next)=>{
         res.locals.utype=null;
         res.locals.name=null;
         res.locals.id=null;
+        res.locals.user=null;
+        res.locals.cart=null;
     }else{
         res.locals.utype=req.user.utype;
         res.locals.name=req.user.first_name;
         res.locals.id=req.user.id;
+        res.locals.user=req.user;
+        res.locals.cart=req.cart;
     }
-    // res.locals.csrfToken="hii";
     next();
 })
 
@@ -116,6 +114,3 @@ mongoose.connect(process.env.DB_CONNECT,{useNewUrlParser:true,useUnifiedTopology
     }).catch((err)=>{
         console.log("Error",err);
     })
-
-
-//sendgrid: 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

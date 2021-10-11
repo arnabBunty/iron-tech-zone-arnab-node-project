@@ -1,8 +1,8 @@
 <nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/<%if(utype=='Admin'){%>admin/viewproduct<%}else{%><%}%>">
-      <img src="/Images/<%if(utype=='Admin'){%>toppng.com-iron-man-2-logo-png-download-pegatina-ironma-333x489.png<%}else{%>toppng.com-iron-man-mask-512x512.png<%}%>" height="30" alt="mdb logo">
-    </a>
+    <a title="Iron Tech Zone" class="navbar-brand" style="color: #8cec9d; background-color: transparent; text-decoration: none;" href="/<%if(utype=='Admin'){%>admin/viewproduct<%}else{%><%}%>">
+      <img src="/Images/<%if(utype=='Admin'){%>toppng.com-iron-man-2-logo-png-download-pegatina-ironma-333x489.png<%}else{%>toppng.com-iron-man-mask-512x512.png<%}%>" height="30" alt="Iron Tech Zone">
+     Tech Zone</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -28,11 +28,9 @@
         </li>
         <%}else{%>
         <li class="nav-item">
-          <a class="nav-link <%=path === '#' ? 'active' : ' '%>" href="#">Contact Us</a>
+          <a class="nav-link <%=path === '/contact-us' ? 'active' : ' '%>" href="/contact-us">Contact Us</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link <%=path === '#' ? 'active' : ' '%>" href="#">About Us</a>
-        </li>
+       
         <%}%>
       </ul>
       <ul class="navbar-nav ml-auto">
@@ -66,9 +64,8 @@
               <i class="fa fa-user"></i>&ensp; <%= name%> <%if(utype=="Admin"){%> (Admin)<%}%>
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-user"></span> Profile</a>
+              <a class="dropdown-item" href="/my-profile">Profile</a>
               <a class="dropdown-item" href="/myorder">My Orders</a>
-              <a class="dropdown-item" href="#">My Account</a>
               <div class="dropdown-divider"></div>
               <a href="/logout" type="button"
             class="btn btn-danger" style="color: cornsilk!important;">Log Out</a>

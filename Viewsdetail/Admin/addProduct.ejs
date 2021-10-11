@@ -19,7 +19,7 @@
                     <input type="file" name="prod_img" multiple>
                     <input type="text" name="prod_cat" placeholder="Product Category" required>
                     <textarea name="prod_desc" placeholder="Product Description" required></textarea>
-                    <input type="text" name="_csrf" value="<%=csrf%>">
+                    <input type="hidden" name="_csrf" value="<%=csrf%>">
                     <input type="submit" value="Add Product">
                 </form>
             </div>

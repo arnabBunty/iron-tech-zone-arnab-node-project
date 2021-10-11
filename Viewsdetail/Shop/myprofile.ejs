@@ -1,0 +1,48 @@
+<%-include('../Includes/header.ejs') %>
+<link rel="stylesheet" href="/CSS/myprofile.css">
+<title><%=title%></title>
+</head>
+
+<%-include('../Includes/preloader.ejs') %>
+<%-include('../Includes/nav.ejs') %>
+
+<div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
+    <div class="card p-4">
+        <div class=" image d-flex flex-column justify-content-center align-items-center"> <button class="icon"> <img src="/Images/toppng.com-roceed-mobile-user-icon-254x496.png" height="100" width="100" /></button> <span class="name mt-3"><%=user.first_name%> <%=user.last_name%></span> <span class="idd">@<%=user.last_name%>.<%=user.first_name%></span>
+            <div class="d-flex flex-row justify-content-center align-items-center gap-2"> <span class="idd1"><%=user._id%></span> <span><i class="fa fa-copy"></i></span> </div>
+            <div class="d-flex flex-row justify-content-center align-items-center mt-3"> <span class="number"><span class="follow"><%=user.email%></span></span> </div>
+            <div class=" d-flex mt-2"> 
+
+                <button type="button" class="btn1 btn-dark" data-toggle="modal" data-target="#edit"> Edit Profile </button>
+                                    
+                                    <!-- The Modal -->
+                                    <div class="modal fade" id="edit">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <!-- Modal Header -->
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title mx-auto">Edit Your Details<br></h4> <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                </div> <!-- Modal body -->
+                                                <div class="modal-body">
+                                                    <form action="/cancelorder" method="POST">
+                                                        <center>
+                                                    <input type="email" name="email" placeholder="Confirm Your Email Id" required>
+                                                    <input type="tel" placeholder="Your new phone no.">
+                                                        <input type="hidden" name="_csrf" value="<%=csrf%>">
+                                                        <button type="submit" class="btn btn-danger d-flex mx-auto btn-sm"> Update </button> </center>
+                                                        <button class="btn btn-primary" style="float: right;" type="button">Change Password</button>
+                                                    </form>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+            </div>
+            <div class="text mt-3"> <span>Phone No. : <%=user.phn%></span> </div>
+            <div class="gap-3 mt-3 icons d-flex flex-row justify-content-center align-items-center"> <span><i class="fa fa-twitter"></i></span> <span><i class="fa fa-facebook-f"></i></span> <span><i class="fa fa-instagram"></i></span> <span><i class="fa fa-linkedin"></i></span> </div>
+            <div class=" px-2 rounded mt-4 date "> <span class="join">Joined <%=join%></span> </div>
+        </div>
+    </div>
+</div>
+
+<%-include('../Includes/footer.ejs') %>

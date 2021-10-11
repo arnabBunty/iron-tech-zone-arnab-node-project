@@ -14,6 +14,9 @@ routing.post('/place-order',isAuth,shopController.postPlaceorder);
 routing.get('/myorder',isAuth,shopController.getMyorder);
 routing.post('/cancelorder',isAuth,shopController.postCancelOrder);
 routing.get('/orderdetails/:id',isAuth,shopController.getOrderDetails);
+routing.get('/contact-us',isAuth,shopController.getContactPage);
+routing.get('/my-profile',isAuth,shopController.getMyprofile);
+
 routing.get('*',shopController.pnf);
 
 
